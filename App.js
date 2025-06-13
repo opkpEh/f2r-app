@@ -6,6 +6,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from './src/screens/homescreen/HomeScreen';
 import CheckoutCartScreen from './src/screens/CheckoutCart/CheckoutCart';
+import SearchScreen from "./src/screens/SearchScreen/SearchScreen";
+import CategoriesScreen from "./src/screens/CategoriesScreen/CategoriesScreen"
 
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -23,6 +25,8 @@ export default function App() {
 
                 <Stack.Screen name="HomeScreen" component={HomeScreen}/>
                 <Stack.Screen name="CheckoutCartScreen" component={CheckoutCartScreen}/>
+                <Stack.Screen name="SearchScreen" component={SearchScreen}/>
+                <Stack.Screen name="CheckoutCart" component={CategoriesScreen}/>
 
             </Stack.Navigator>
         </NavigationContainer>

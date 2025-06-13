@@ -2,10 +2,10 @@ import React from "react"
 import {View, Text, StyleSheet, SafeAreaView} from "react-native"
 import AppBar from "../../components/AppBar/AppBar"
 
-export default function CheckoutCartScreen({navigation}) {
+export default function CategoriesScreen({navigation}) {
     return(
         <SafeAreaView style={styles.container}>
-            <AppBar title="Cart" navigation={navigation} />
+            <AppBar title="Categories" navigation={navigation} />
             <View style={styles.content}>
                 <Text style={styles.text}>Checkout Cart Screen</Text>
             </View>

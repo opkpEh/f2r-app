@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, View, Text, Button, StyleSheet, Pressable} from 'react-native';
+import {Modal, Text, Button, StyleSheet, Pressable} from 'react-native';
 
 export default function CustomerCareModal({visible, onClose}) {
     return (

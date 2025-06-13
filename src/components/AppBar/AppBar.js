@@ -1,49 +1,54 @@
 import React from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
-import TextInput from "./components/TextInput";
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import IconButton from "./components/IconButton";
-import CustomerCareModal from "../../screens/homescreen/components/CustomerCaseModal";
-import { useNavigation } from '@react-navigation/native';
+import CustomerCareModal from "../../components/AppBar/components/CustomerCaseModal";
+import PromoCarousel from "./components/PromoCarousel";
 
-
-export default function AppBar({title = "f2r app bar", navigation}) {
-    const [inputValue, setInputValue] = React.useState('');
+export default function AppBar({ title = "f2r app bar", navigation }) {
     const [ccModalVisible, setCCModalVisible] = React.useState(false);
-
     return (
         <>
-            <StatusBar backgroundColor="#808080" barStyle="light-content"/>
-            <View style={styles.appBar}>
-                <Text style={styles.appBarTitle}>{title}</Text>
-                <TextInput
-                    value={inputValue}
-                    onChangeText={setInputValue}
-                    placeholder="Search for products"
-                />
-                <IconButton
-                    iconName="person"
-                    onPress={
-                        () => setCCModalVisible(true)
-                    }
-                    size={30}
-                    color='#fff'
-                />
-                <IconButton
-                    iconName="trolley"
-                    onPress={() => navigation.navigate('CheckoutCartScreen')}
-                    size={30}
-                    color='#fff'
-                />
+            <StatusBar backgroundColor="#808080" barStyle="light-content" />
+            <SafeAreaView edges={['top']} style={styles.safeAreaContainer}>
+                <View style={styles.appBar}>
+                    <Text style={styles.appBarTitle}>{title}</Text>
+                    <View style={styles.promoContainer}>
+                        <PromoCarousel />
+                    </View>
 
-            </View>
-            <CustomerCareModal visible={ccModalVisible} onClose={() => setCCModalVisible(false)}
-                               animationType={"none"}/>
+                    <View style={styles.iconContainer}>
+                        <IconButton
+                            iconName="search"
+                            onPress={() => navigation.navigate('SearchScreen')}
+                            size={24}
+                            color="#fff"
+                        />
+                        <IconButton
+                            iconName="person"
+                            onPress={() => setCCModalVisible(true)}
+                            size={24}
+                            color="#fff"
+                        />
+                        <IconButton
+                            iconName="trolley"
+                            onPress={() => navigation.navigate('CheckoutCartScreen')}
+                            size={24}
+                            color="#fff"
+                        />
+                    </View>
+                </View>
+            </SafeAreaView>
 
+            <CustomerCareModal visible={ccModalVisible} onClose={() => setCCModalVisible(false)} animationType="none" />
         </>
     );
 }
 
 const styles = StyleSheet.create({
+    safeAreaContainer: {
+        backgroundColor: '#808080',
+    },
     appBar: {
         height: 56,
         backgroundColor: '#808080',
@@ -56,6 +61,15 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
-        marginRight: 8, // Optional, for spacing
+        marginRight: 8,
+    },
+    promoContainer: {
+        flexShrink: 1,
+        maxWidth: '50%',
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        gap: 8,
+        alignItems: 'center',
     },
 });
