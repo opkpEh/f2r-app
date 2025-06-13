@@ -26,7 +26,7 @@ export default function App() {
                 <Stack.Screen name="HomeScreen" component={HomeScreen}/>
                 <Stack.Screen name="CheckoutCartScreen" component={CheckoutCartScreen}/>
                 <Stack.Screen name="SearchScreen" component={SearchScreen}/>
-                <Stack.Screen name="CheckoutCart" component={CategoriesScreen}/>
+                <Stack.Screen name="CategoriesScreen" component={CategoriesScreen}/>
 
             </Stack.Navigator>
         </NavigationContainer>
