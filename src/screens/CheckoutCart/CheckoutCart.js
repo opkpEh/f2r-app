@@ -1,6 +1,8 @@
 import React from "react"
-import {View, Text, StyleSheet, SafeAreaView} from "react-native"
+import {View, Text, StyleSheet} from "react-native"
 import AppBar from "../../components/AppBar/AppBar"
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function CheckoutCartScreen({navigation}) {
     return(

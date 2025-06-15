@@ -1,47 +1,41 @@
 import React from 'react';
 import { View, Text, StyleSheet, StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import IconButton from "./components/IconButton";
-import CustomerCareModal from "../../components/AppBar/components/CustomerCaseModal";
+import CustomerCareModal from "./components/CustomerCareModal";
 import PromoCarousel from "./components/PromoCarousel";
 
 export default function AppBar({ title = "f2r app bar", navigation }) {
     const [ccModalVisible, setCCModalVisible] = React.useState(false);
     return (
-        <>
-            <StatusBar backgroundColor="#808080" barStyle="light-content" />
-            <SafeAreaView edges={['top']} style={styles.safeAreaContainer}>
-                <View style={styles.appBar}>
-                    <Text style={styles.appBarTitle}>{title}</Text>
-                    <View style={styles.promoContainer}>
-                        <PromoCarousel />
-                    </View>
-
-                    <View style={styles.iconContainer}>
-                        <IconButton
-                            iconName="search"
-                            onPress={() => navigation.navigate('SearchScreen')}
-                            size={24}
-                            color="#fff"
-                        />
-                        <IconButton
-                            iconName="person"
-                            onPress={() => setCCModalVisible(true)}
-                            size={24}
-                            color="#fff"
-                        />
-                        <IconButton
-                            iconName="trolley"
-                            onPress={() => navigation.navigate('CheckoutCartScreen')}
-                            size={24}
-                            color="#fff"
-                        />
-                    </View>
-                </View>
-            </SafeAreaView>
-
+        <View style={styles.appBar}>
+            <Text style={styles.appBarTitle}>{title}</Text>
+            <View style={styles.promoContainer}>
+                <PromoCarousel />
+            </View>
+            <View style={styles.iconContainer}>
+                <IconButton
+                    iconName="search"
+                    onPress={() => navigation.navigate('SearchScreen')}
+                    size={24}
+                    color="#fff"
+                />
+                <IconButton
+                    iconName="trolley"
+                    onPress={() => navigation.navigate('CheckoutCartScreen')}
+                    size={24}
+                    color="#fff"
+                />
+                <IconButton
+                    iconName="person"
+                    onPress={()=>navigation.navigate('ProfileScreen')}
+                    size={24}
+                    color="#fff"
+                />
+            </View>
             <CustomerCareModal visible={ccModalVisible} onClose={() => setCCModalVisible(false)} animationType="none" />
-        </>
+
+        </View>
+        
     );
 }
 

@@ -1,14 +1,15 @@
 import React from "react"
 import {View, Text, StyleSheet} from "react-native"
-import AppBar from "../../components/AppBar/AppBar"
+import AppBar from "../../components/SimpleAppBar/SimpleAppBar"
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function CategoriesScreen({navigation}) {
+
+export default function HelpSupportScreen({navigation}) {
     return(
         <SafeAreaView style={styles.container}>
-            <AppBar title="Categories" navigation={navigation} />
+            <AppBar title="Help & Support" navigation={navigation} />
             <View style={styles.content}>
-                <Text style={styles.text}>Categories Screen</Text>
+                <Text style={styles.text}>Help & Support Screen</Text>
             </View>
         </SafeAreaView>
     )

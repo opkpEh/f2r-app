@@ -1,15 +1,13 @@
 import React from "react"
-import {View, Text, StyleSheet, SafeAreaView} from "react-native"
+import {View, Text, StyleSheet} from "react-native"
 import AppBar from "./components/AppBar"
 
 export default function SearchScreen({navigation}) {
     return(
-        <SafeAreaView style={styles.container}>
-            <AppBar title="Search" navigation={navigation} />
+            <><AppBar title="Search" navigation={navigation} />
             <View style={styles.content}>
                 <Text style={styles.text}>Search Screen</Text>
-            </View>
-        </SafeAreaView>
+            </View></>
     )
 }
 

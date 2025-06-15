@@ -1,19 +1,18 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import AppBar from '../../components/AppBar/AppBar';
+import React from "react";
+import {View, Text, StyleSheet} from "react-native";
+import AppBar from "../../components/AppBar/AppBar";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function HomeScreen({navigation}) {
-    return (
-        <SafeAreaView style={styles.container}>
-            <AppBar title="f2r" navigation={navigation}/>
 
-            {/* Main Content */}
+export default function ShopScreen({navigation}) {
+    return(
+        <SafeAreaView style={styles.container}>
+            <AppBar title="Shop All" navigation={navigation} />
             <View style={styles.content}>
-                <Text style={styles.text}>Home Screen</Text>
+                <Text style={styles.text}>Shop Screen</Text>
             </View>
         </SafeAreaView>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
