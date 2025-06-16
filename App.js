@@ -18,6 +18,7 @@ import HelpSupportScreen from './src/screens/HelpSupportScreen/HelpSupportScreen
 import AboutUsScreen from './src/screens/AboutUsScreen/AboutUsScreen';
 import ShopScreen from './src/screens/ShopScreen/ShopScreen';
 import WishlistScreen from './src/screens/WishlistScreen/WishlistScreen';
+import LoginPageScreen from './src/screens/LoginPageScreen/LoginPageScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -59,6 +60,7 @@ export default function App() {
         <Stack.Screen name="AddressScreen" component={AddressScreen} />
         <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen} />
         <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
+        <Stack.Screen name='LoginPageScreen' component={LoginPageScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

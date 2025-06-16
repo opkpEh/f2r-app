@@ -27,7 +27,7 @@ export default function AppBar({ title = "f2r app bar", navigation }) {
                 />
                 <IconButton
                     iconName="person"
-                    onPress={()=>navigation.navigate('ProfileScreen')}
+                    onPress={() => navigation.navigate('ProfileScreen')}
                     size={24}
                     color="#fff"
                 />
@@ -35,7 +35,7 @@ export default function AppBar({ title = "f2r app bar", navigation }) {
             <CustomerCareModal visible={ccModalVisible} onClose={() => setCCModalVisible(false)} animationType="none" />
 
         </View>
-        
+
     );
 }
 

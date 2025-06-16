@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AppBar from '../../components/AppBar/AppBar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,7 +11,11 @@ export default function HomeScreen({navigation}) {
             {/* Main Content */}
             <View style={styles.content}>
                 <Text style={styles.text}>Home Screen</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("LoginPageScreen")}>
+                <Text>login page</Text>
+            </TouchableOpacity>
             </View>
+            
         </SafeAreaView>
     );
 }
