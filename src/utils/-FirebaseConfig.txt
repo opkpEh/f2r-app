@@ -1,0 +1,15 @@
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage"
+
+const FirebaseConfig = {
+  apiKey: "AIzaSyBnWae2HAhdHkrPiCElsM8sWT6zPL8mhQY",
+  authDomain: "f2r-app.firebaseapp.com",
+  projectId: "f2r-app",
+  storageBucket: "f2r-app.appspot.com",
+  messagingSenderId: "388307284463",
+  appId: "1:388307284463:android:f845ba6a8e3a5140a1c61a"
+};
+
+const app = initializeApp(FirebaseConfig);
+const auth = initializeAuth(app,{
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});

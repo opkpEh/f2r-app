@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "388307284463",
+    "project_id": "f2r-app",
+    "storage_bucket": "f2r-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388307284463:android:4bb45feba3e87571a1c61a",
+        "android_client_info": {
+          "package_name": "com.opkp.template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388307284463-0cb5b0br58cg7kd0u98dtjv0g15tc7if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opkp.template",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "388307284463-8f044v4ud66akgp7kq6fkud1fhkp9tnf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnWae2HAhdHkrPiCElsM8sWT6zPL8mhQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388307284463-8f044v4ud66akgp7kq6fkud1fhkp9tnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

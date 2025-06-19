@@ -11,8 +11,6 @@ export default function HomeScreen({navigation}) {
             {/* Main Content */}
             <View style={styles.content}>
                 <Text style={styles.text}>Home Screen</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("LoginPageScreen")}>
-                <Text>login page</Text>
             </TouchableOpacity>
             </View>
             

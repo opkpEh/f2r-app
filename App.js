@@ -4,12 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, { useEffect, useState } from "react";
+
+//Firebase
+import auth from '@react-native-firebase/auth';
 
 // Screens
 import HomeScreen from './src/screens/homescreen/HomeScreen';
 import CheckoutCartScreen from './src/screens/CheckoutCart/CheckoutCart';
 import SearchScreen from "./src/screens/SearchScreen/SearchScreen";
-import CategoriesScreen from "./src/screens/CategoriesScreen/CategoriesScreen";
+import CategoriesScreen from './src/screens/CategoriesScreen/CategoriesScreen';
 import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 import EditProfileScreen from './src/screens/EditProfileScreen/EditProfileScreen';
 import OrderScreen from './src/screens/OrderScreen/OrderScreen';
@@ -19,6 +23,7 @@ import AboutUsScreen from './src/screens/AboutUsScreen/AboutUsScreen';
 import ShopScreen from './src/screens/ShopScreen/ShopScreen';
 import WishlistScreen from './src/screens/WishlistScreen/WishlistScreen';
 import LoginPageScreen from './src/screens/LoginPageScreen/LoginPageScreen';
+import PromptLoginScreen from './src/screens/ProfileScreen/components/PromptLoginScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,23 +37,37 @@ function MainTabs() {
           if (route.name === 'Home') iconName = 'home-outline';
           else if (route.name === 'Categories') iconName = 'grid-outline';
           else if (route.name === 'Wishlist') iconName = 'bag-outline';
-          else if (route.name == 'Shop') iconName='cart-outline';
+          else if (route.name === 'Shop') iconName = 'cart-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#21897E',
         tabBarInactiveTintColor: 'gray',
-        headerShown: false, 
+        headerShown: false,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Shop" component={ShopScreen} />
       <Tab.Screen name="Wishlist" component={WishlistScreen} />
-      <Tab.Screen name="Categories" component={CategoriesScreen}/>
+      <Tab.Screen name="Categories" component={CategoriesScreen} />
     </Tab.Navigator>
   );
 }
 
 export default function App() {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
+      setUser(user);
+      setIsLoading(false);
+    });
+
+    return unsubscribe; // cleanup listener
+  }, []);
+
+  if (isLoading) return null;
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -60,7 +79,9 @@ export default function App() {
         <Stack.Screen name="AddressScreen" component={AddressScreen} />
         <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen} />
         <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
-        <Stack.Screen name='LoginPageScreen' component={LoginPageScreen}/>
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="PromptLoginScreen" component={PromptLoginScreen} />
+        <Stack.Screen name="LoginPageScreen" component={LoginPageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

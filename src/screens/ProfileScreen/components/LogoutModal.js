@@ -1,7 +1,19 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Modal, Alert } from "react-native";
+import auth from '@react-native-firebase/auth';
 
-export default function LogoutModal({ visible, onClose }) {
+export default function LogoutModal({ visible, onClose, navigation }) {
+  const handleLogout = async () => {
+    try {
+      await auth().signOut();
+      onClose(); // Close modal
+      navigation.replace('LoginPageScreen'); // Redirect to login
+    } catch (error) {
+      console.error('Logout error:', error);
+      Alert.alert('Error', 'Failed to logout.');
+    }
+  };
+
   return (
     <Modal
       visible={visible}
@@ -17,10 +29,8 @@ export default function LogoutModal({ visible, onClose }) {
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {
-            // ✅ Your logout logic here
-            onClose();
-          }} style={styles.logoutButton}>
+
+          <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
             <Text style={styles.buttonText}>Logout</Text>
           </TouchableOpacity>
         </View>
@@ -28,6 +38,7 @@ export default function LogoutModal({ visible, onClose }) {
     </Modal>
   );
 }
+
 
 const styles = StyleSheet.create({
   modalOverlay: {
