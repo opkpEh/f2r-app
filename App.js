@@ -1,10 +1,10 @@
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 //Firebase
 import auth from '@react-native-firebase/auth';
@@ -24,65 +24,69 @@ import ShopScreen from './src/screens/ShopScreen/ShopScreen';
 import WishlistScreen from './src/screens/WishlistScreen/WishlistScreen';
 import LoginPageScreen from './src/screens/LoginPageScreen/LoginPageScreen';
 import PromptLoginScreen from './src/screens/ProfileScreen/components/PromptLoginScreen';
+import LoginDetailsScreen from "./src/screens/LoginDetailsScreen/LoginDetailsScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MainTabs() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-          if (route.name === 'Home') iconName = 'home-outline';
-          else if (route.name === 'Categories') iconName = 'grid-outline';
-          else if (route.name === 'Wishlist') iconName = 'bag-outline';
-          else if (route.name === 'Shop') iconName = 'cart-outline';
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: '#21897E',
-        tabBarInactiveTintColor: 'gray',
-        headerShown: false,
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Shop" component={ShopScreen} />
-      <Tab.Screen name="Wishlist" component={WishlistScreen} />
-      <Tab.Screen name="Categories" component={CategoriesScreen} />
-    </Tab.Navigator>
-  );
+    return (
+        <Tab.Navigator
+            screenOptions={({route}) => ({
+                tabBarIcon: ({color, size}) => {
+                    let iconName;
+                    if (route.name === 'Home') iconName = 'home-outline';
+                    else if (route.name === 'Categories') iconName = 'grid-outline';
+                    else if (route.name === 'Wishlist') iconName = 'bag-outline';
+                    else if (route.name === 'Shop') iconName = 'cart-outline';
+                    return <Ionicons name={iconName} size={size} color={color}/>;
+                },
+                tabBarActiveTintColor: '#21897E',
+                tabBarInactiveTintColor: 'gray',
+                headerShown: false,
+            })}
+        >
+            <Tab.Screen name="Home" component={HomeScreen}/>
+            <Tab.Screen name="Shop" component={ShopScreen}/>
+            <Tab.Screen name="Wishlist" component={WishlistScreen}/>
+            <Tab.Screen name="Categories" component={CategoriesScreen}/>
+        </Tab.Navigator>
+    );
 }
 
 export default function App() {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user) => {
-      setUser(user);
-      setIsLoading(false);
-    });
+    useEffect(() => {
+        const unsubscribe = auth().onAuthStateChanged((user) => {
+            setUser(user);
+            setIsLoading(false);
+        });
 
-    return unsubscribe; // cleanup listener
-  }, []);
+        return unsubscribe; // cleanup listener
+    }, []);
 
-  if (isLoading) return null;
+    if (isLoading) return null;
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="MainTabs" component={MainTabs} />
-        <Stack.Screen name="CheckoutCartScreen" component={CheckoutCartScreen} />
-        <Stack.Screen name="SearchScreen" component={SearchScreen} />
-        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
-        <Stack.Screen name="OrderScreen" component={OrderScreen} />
-        <Stack.Screen name="AddressScreen" component={AddressScreen} />
-        <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen} />
-        <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
-        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-        <Stack.Screen name="PromptLoginScreen" component={PromptLoginScreen} />
-        <Stack.Screen name="LoginPageScreen" component={LoginPageScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    //Make it so that if user is not logged in, when the app boots up, it makes sure that home-screen is loaded
+    //{user? (): ()}
+    return (
+        <NavigationContainer>
+                <Stack.Navigator screenOptions={{headerShown: false}}>
+                    <Stack.Screen name="MainTabs" component={MainTabs}/>
+                    <Stack.Screen name="CheckoutCartScreen" component={CheckoutCartScreen}/>
+                    <Stack.Screen name="SearchScreen" component={SearchScreen}/>
+                    <Stack.Screen name="EditProfileScreen" component={EditProfileScreen}/>
+                    <Stack.Screen name="OrderScreen" component={OrderScreen}/>
+                    <Stack.Screen name="AddressScreen" component={AddressScreen}/>
+                    <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen}/>
+                    <Stack.Screen name="AboutUsScreen" component={AboutUsScreen}/>
+                    <Stack.Screen name="ProfileScreen" component={ProfileScreen}/>
+                    <Stack.Screen name="PromptLoginScreen" component={PromptLoginScreen}/>
+                    <Stack.Screen name="LoginPageScreen" component={LoginPageScreen}/>
+                    <Stack.Screen name="LoginDetailsScreen" component={LoginDetailsScreen}/>
+                </Stack.Navigator>
+        </NavigationContainer>
+    );
 }

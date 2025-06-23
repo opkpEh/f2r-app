@@ -1,44 +1,26 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Modal, Alert } from "react-native";
-import auth from '@react-native-firebase/auth';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 
-export default function LogoutModal({ visible, onClose, navigation }) {
-  const handleLogout = async () => {
-    try {
-      await auth().signOut();
-      onClose(); // Close modal
-      navigation.replace('LoginPageScreen'); // Redirect to login
-    } catch (error) {
-      console.error('Logout error:', error);
-      Alert.alert('Error', 'Failed to logout.');
-    }
-  };
-
+export default function LogoutModal({ visible, onClose, onLogout }) {
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="slide"
-      onRequestClose={onClose}
-    >
-      <View style={styles.modalOverlay}>
-        <View style={styles.modalContainer}>
-          <Text style={styles.modalTitle}>Are you sure?</Text>
-          <Text>Do you want to logout?</Text>
+      <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Are you sure?</Text>
+            <Text>Do you want to logout?</Text>
 
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Text style={styles.buttonText}>Cancel</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+              <Text style={styles.buttonText}>Cancel</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-            <Text style={styles.buttonText}>Logout</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={onLogout} style={styles.logoutButton}>
+              <Text style={styles.buttonText}>Logout</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
   );
 }
-
 
 const styles = StyleSheet.create({
   modalOverlay: {
